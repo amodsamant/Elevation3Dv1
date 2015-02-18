@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Year', 'Sales'],
+          ['2002',  100 ],
+          ['2003',  400 ],
+          ['2004',  1000 ],
+          ['2005',  460],
+          ['2006',  1120],
+          ['2007',  540]
+        ]);
+
+        var options = {
+  		  title: 'Elevation',
+    	  curveType: 'function',
+    	  legend: { position: 'bottom' }
+ 		};
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="chart_div" ></div>
+  </body>
+</html>

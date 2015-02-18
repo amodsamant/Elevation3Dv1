@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Showing elevation along a path</title>
+    <style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+    </style>
+    <script src="https://www.google.com/jsapi"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script>
+var elevator;
+var map;
+var chart;
+var polyline;
+
+var returnValue ;
+
+var lat1;// = android.getLocation();
+  
+//var lon1 = android.getLocationALat(2);
+//var lat2 = android.getLocationALat(3);
+//var lon2 = android.getLocationALat(4);
+
+var locationA = new google.maps.LatLng(42.4187251,-71.2587515);
+var locationB = new google.maps.LatLng(42.3910224,-71.1977729);
+
+
+// Load the Visualization API and the columnchart package.
+google.load('visualization', '1', {packages: ['columnchart']});
+
+function initialize() {
+  var mapOptions = {
+    zoom: 8,
+    center: locationA,
+    mapTypeId: 'terrain'
+  }
+  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+  // Create an ElevationService.
+  elevator = new google.maps.ElevationService();
+
+  // Draw the path, using the Visualization API and the Elevation service.
+  drawPath();
+}
+
+function drawPath() {
+
+  // Create a new chart in the elevation_chart DIV.
+  chart = new google.visualization.ColumnChart(document.getElementById('elevation_chart'));
+ var path = [ locationA, locationB];
+  // Create a PathElevationRequest object using this array.
+  // Ask for 256 samples along that path.
+  var pathRequest = {
+    'path': path,
+    'samples': 8
+  }
+
+  // Initiate the path request.
+  elevator.getElevationAlongPath(pathRequest, plotElevation);
+}
+
+// Takes an array of ElevationResult objects, draws the path on the map
+// and plots the elevation profile on a Visualization API ColumnChart.
+function plotElevation(results, status) {
+  if (status != google.maps.ElevationStatus.OK) {
+    return;
+  }
+  var elevations = results;
+  
+  // Extract the elevation samples from the returned results
+  // and store them in an array of LatLngs.
+  var elevationPath = [];
+  returnValue = results[0].elevation;
+  for (var i = 0; i < results.length; i++) {
+    elevationPath.push(elevations[i].location);
+    returnValue = returnValue + "," +results[i].elevation;
+  }
+
+  // Display a polyline of the elevation path.
+  var pathOptions = {
+    path: elevationPath,
+    strokeColor: '#0000CC',
+    opacity: 0.4,
+    map: map
+  }
+  polyline = new google.maps.Polyline(pathOptions);
+
+  // Extract the data from which to populate the chart.
+  // Because the samples are equidistant, the 'Sample'
+  // column here does double duty as distance along the
+  // X axis.
+  var data = new google.visualization.DataTable();
+  data.addColumn('string', 'Sample');
+  data.addColumn('number', 'Elevation');
+  for (var i = 0; i < results.length; i++) {
+    data.addRow(['', elevations[i].elevation]);
+    
+  }
+
+  // Draw the chart using the data within its DIV.
+  document.getElementById('elevation_chart').style.display = 'block';
+  chart.draw(data, {
+    height: 150,
+    legend: 'none',
+    titleY: 'Elevation (m)'
+  });
+
+//android.log(elevations[0].elevation.toString());
+ //lat1 = android.getLocation();
+ //lat1="amod";
+ //android.log(lat1);
+  android.log(returnValue);
+}
+
+function setLat(num) {
+   lat1 = num;
+   android.log(lat1);
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+  </head>
+  <body>
+    <div>
+      <div id="map-canvas" style="height:250px;"></div>
+      <div id="elevation_chart"></div>
+    </div>
+  </body>
+</html>

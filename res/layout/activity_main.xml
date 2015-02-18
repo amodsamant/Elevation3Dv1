@@ -1,0 +1,112 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    	android:layout_width="match_parent"
+        android:layout_height="fill_parent">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="442dp"
+    android:background="#FFFFFF"
+    android:padding="10dp" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/autoLocationB"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="32dp"
+        android:text="@string/locationA"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#000000" 
+        />
+
+    <AutoCompleteTextView
+        android:id="@+id/autoLocationA"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:textColor="#000000"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:hint="@string/locationAEditText" 
+        android:singleLine="true"
+        >
+
+    </AutoCompleteTextView>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/autoLocationA"
+        android:layout_below="@+id/autoLocationA"
+        android:layout_marginTop="32dp"
+        android:text="@string/locationB"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#000000" />
+
+    <AutoCompleteTextView
+        android:id="@+id/autoLocationB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:textColor="#000000"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:hint="@string/locationBEditText" 
+        android:singleLine="true"/>
+
+    <Button
+        android:id="@+id/button3D"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/button2D"
+        android:layout_alignRight="@+id/button2D"
+        android:layout_below="@+id/button2D"
+        android:layout_marginTop="20dp"
+        android:onClick="onClick3D"
+        android:text="@string/threeD" />
+
+    <Button
+        android:id="@+id/getCoordinates"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button3D"
+        android:layout_alignRight="@+id/autoLocationB"
+        android:layout_marginRight="22dp"
+        android:text="@string/getCoordinates" 
+        android:onClick="onClickGetCoordinates"/>
+
+    <WebView
+        android:id="@+id/webView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/button3D"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/coordinatesView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/button3D"
+        android:layout_alignLeft="@+id/getCoordinates"
+        android:layout_alignRight="@+id/webView1"
+        android:layout_below="@+id/getCoordinates"
+        android:textColor="#000000" />
+
+    <Button
+        android:id="@+id/button2D"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/autoLocationB"
+        android:layout_below="@+id/autoLocationB"
+        android:onClick="onClick2D"
+        android:text="@string/twoD" />
+
+</RelativeLayout>
+</ScrollView>

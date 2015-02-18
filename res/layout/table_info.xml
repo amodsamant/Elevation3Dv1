@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="375dp" 
+        android:layout_marginLeft="20dp"
+   		android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"	
+        android:background="#FFFFFF"
+        android:alpha="0.9">
+
+        <TextView
+            android:id="@+id/textViewStat1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:padding="25dp"
+            android:text="ELEVATION STAT 1" />
+
+        <TextView
+            android:id="@+id/textViewStat2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:padding="25dp"
+            android:text="ELEVATION STAT 2" />
+
+        <TextView
+            android:id="@+id/textViewStat3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:padding="25dp"
+            android:text="ELEVATION STAT 3" />
+
+        <TextView
+            android:id="@+id/textViewStat4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:padding="25dp"
+            android:text="ELEVATION STAT 4" />
+
+</RelativeLayout>
